@@ -1,0 +1,26 @@
+main: com.cavetale.endfight.EndFightPlugin
+name: EndFight
+
+version: 0.1
+api-version: 1.19
+
+description: End Fight
+author: StarTux
+website: https://cavetale.com
+
+depend: [Core, Mytems, Fam]
+softdepend: []
+
+commands:
+
+  endfight:
+    description: End Fight Event Plugin
+    permission: endfight.endfight
+    permission-message: You do not have permission!
+    usage: /<command>
+
+permissions:
+
+  endfight.endfight:
+    description: Use /endfight
+
