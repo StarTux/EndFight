@@ -162,7 +162,7 @@ public final class EndFightPlugin extends JavaPlugin implements Listener {
             Highscore.reward(state.scores,
                              "end_fight",
                              TrophyCategory.MEDAL,
-                             text("End Fight 2022", DARK_RED),
+                             text("Revenge of the End", DARK_RED),
                              hi -> "You killed " + hi.score + " mob" + (hi.score == 1 ? "" : "s"));
         default:
             return false;
@@ -188,7 +188,7 @@ public final class EndFightPlugin extends JavaPlugin implements Listener {
         state.alive = 0;
         state.round += 1;
         state.roundTicks = 0;
-        List<EntityType> es = new ArrayList<>(mobs.subList(0, Math.max(3, Math.min(state.round, mobs.size()))));
+        List<EntityType> es = new ArrayList<>(mobs.subList(0, Math.max(3, Math.min(state.round / 2, mobs.size()))));
         Collections.shuffle(es);
         for (int i = 0; i < 3; i += 1) {
             EntityType et = es.get(i);
@@ -217,8 +217,8 @@ public final class EndFightPlugin extends JavaPlugin implements Listener {
     private static final NamespacedKey MOB_KEY = NamespacedKey.fromString("endfight:mob");
 
     private boolean spawnMob(EntityType et) {
-        int x = ThreadLocalRandom.current().nextInt(32);
-        int z = ThreadLocalRandom.current().nextInt(32);
+        int x = ThreadLocalRandom.current().nextInt(48);
+        int z = ThreadLocalRandom.current().nextInt(48);
         if (ThreadLocalRandom.current().nextBoolean()) x = -x;
         if (ThreadLocalRandom.current().nextBoolean()) z = -z;
         Block block = getWorld().getHighestBlockAt(x, z);
@@ -360,7 +360,7 @@ public final class EndFightPlugin extends JavaPlugin implements Listener {
         state.scores.put(id, kills);
         saveState();
         computeHighscore();
-        player.sendActionBar(text("You have " + kills + "kills", DARK_RED));
+        player.sendActionBar(text("You have " + kills + " kills", DARK_RED));
         if (kills % 10 == 0) {
             switch ((kills / 10) % 5) {
             case 0: enchant(player, EquipmentSlot.HAND, null); break;
